@@ -16,6 +16,9 @@ public class player : MonoBehaviour
     ShotManager shotManager;
     Shot currentShot;
 
+    [SerializeField] Transform serveRight;
+    [SerializeField] Transform serveLeft;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
