@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-    float speed = 50;
+    float speed = 3;
     Animator animator;
     public Transform ball;
     public Transform aimTarget;
