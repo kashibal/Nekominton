@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class Ball : MonoBehaviour
     int playerScore;
     int botScore;
 
-    public bool playing;
+    public bool playing = true;
+    [SerializeField] Text playerScoretext;
+    [SerializeField] Text botScoretext;
 
 
     // Start is called before the first frame update
@@ -20,16 +23,15 @@ public class Ball : MonoBehaviour
         playerScore = 0;
         botScore = 0;
 
-        playing = true;
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Wall"))
+        if (collision.transform.CompareTag("Out"))
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            //transform.position = initialPos;
 
             GameObject.Find("player").GetComponent<player>().Reset();
 
