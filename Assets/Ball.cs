@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Ball : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class Ball : MonoBehaviour
     int botScore;
 
     public bool playing = true;
-    [SerializeField] Text playerScoretext;
-    [SerializeField] Text botScoretext;
+
+    [SerializeField] TextMeshProUGUI playerScoretext;
+    [SerializeField] TextMeshProUGUI botScoretext;
 
 
     // Start is called before the first frame update
@@ -22,7 +24,6 @@ public class Ball : MonoBehaviour
         initialPos = transform.position;
         playerScore = 0;
         botScore = 0;
-
 
     }
 
@@ -46,6 +47,8 @@ public class Ball : MonoBehaviour
                     botScore++;
                 }
                 playing = false;
+                updateScores();
+
             }
 
         }
@@ -55,16 +58,25 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("Out") && playing)
         {
-            if(hitter == "player")
+            if (hitter == "player")
             {
                 botScore++;
-            }else if(hitter == "bot")
+            } else if (hitter == "bot")
             {
                 playerScore++;
             }
             playing = false;
+            updateScores();
 
         }
     }
 
+    void updateScores()
+    {
+        playerScoretext.text = "Player : " + playerScore;
+        botScoretext.text = "Bot : " + botScore;
+
+    }
+
 }
+ 
